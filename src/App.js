@@ -1,6 +1,6 @@
 import './App.css';
 import { Routes,Route } from 'react-router-dom';
-import AddUsuario from './pages/Login';
+import AddUsuario from './pages/adicionar';
 
 function App() {
   return (

@@ -4,8 +4,8 @@ export async function addUsuario(usuario){
   return await api.post("/usuario",usuario).then(response=>response);
 }
 
-export async function getUsuario(id){
-  return await api.get(`/usuario/${id}`).then(response=>response);
+export async function Usuario(){
+  return await api.get(`/usuarios`).then(response=>response);
 }
 
 export async function removeUsuario(id){
@@ -17,5 +17,9 @@ export async function editUsuario(usuario){
 }
 
 export async function modifcarSenha() {
-  return await api.put('/usuario/modify-password').then(response=>response);
+  return await api.post('/usuario/modify-password').then(response=>response);
+}
+
+export async function logarUsuario(login) {
+  return await api.post(`/usuario/${login}`).then(response => response);
 }
