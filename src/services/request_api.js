@@ -20,6 +20,6 @@ export async function modifcarSenha() {
   return await api.post('/usuario/modify-password').then(response=>response);
 }
 
-export async function logarUsuario(credentials) {
-  return await api.post('/login', credentials).then(response => response);
+export async function logarUsuario(usuario) {
+  return await api.post('/usuario/login', usuario).then(response => response);
 }
