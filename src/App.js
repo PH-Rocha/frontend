@@ -7,8 +7,8 @@ function App() {
   return (
     <>
       <Routes>
-        <Route index element={<LoginUsuario/>}/>
-        <Route index element={<AddUsuario/>}/>
+        <Route path='/login' element={<LoginUsuario/>}/>
+        <Route path='/adicionar' element={<AddUsuario/>}/>
       </Routes>
     </>
   );
