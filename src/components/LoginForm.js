@@ -19,11 +19,16 @@ class login extends Component {
     console.log('Login:', login);
     console.log('Senha:', senhaAtual);
 
+    if (!login || !senhaAtual) {
+      console.error('Por favor, preencha todos os campos');
+      return;
+    }
+
     try {
       const response = await fetch('http://localhost:8080/api/usuario/login', {
         method: 'POST',
         headers: {
-          'content-Type:': 'application/json'
+          'Content-Type:': 'application/json'
         },
         body: JSON.stringify({ login, senhaAtual })
       });
