@@ -19,7 +19,7 @@ function addCliente() {
     });
   }
 
-  const salvarCliente = async (event) => {
+  const salvaCliente = async (event) => {
     event.preventDefault();
     console.log(cliente);
 
@@ -29,13 +29,14 @@ function addCliente() {
   return (
     <>
       <h1>Adicionar cliente</h1>
-      <form onSubmit={salvarCliente}>  
+      <form onSubmit={salvaCliente}>  
         <label>nome</label>
         <input type="text" name="nome" value={cliente.nome} onChange={handleChange}/>
         <label>idade</label>
         <input type="text" name="idade" value={cliente.idade} onChange={handleChange}/>
         <label>Id do Usuario</label>
         <input type="text" name="id_usuario" value={cliente.id_usuario} onChange={handleChange}/>
+        <button type='submit'>Salvar</button>
       </form>
     </>
   )

@@ -9,7 +9,7 @@ function AddUsuario() {
   });
 
   const handleChange = (event) => {
-    const  { name,value} = event.target;
+    const  { name,value } = event.target;
 
     setUsuario((usuarioAnterior) => {
       return {
