@@ -57,7 +57,7 @@ export async function getClientes(token){
   }).then(response => response);
 }
 
-export async function editarCliente(cliente, token){
+export async function editCliente(cliente, token){
   if (!token) {
     throw new Error('Token de autenticação não fornecido');
   }
@@ -112,7 +112,7 @@ export async function getFuncionarios(token){
   }).then(response => response);
 }
 
-export async function editarFuncionario(funcionario, token){
+export async function editFuncionario(funcionario, token){
   if (!token) {
     throw new Error('Token de autenticação não fornecido');
   }
