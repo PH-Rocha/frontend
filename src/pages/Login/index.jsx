@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { logarUsuario } from '../../services/request_api';
 
 function LogarUsuario() {
+  const navigate = useNavigate();
   const [ usuario, setUsuario ] = useState({
     login: '',
     senha: ''
@@ -27,6 +29,17 @@ function LogarUsuario() {
       const response = await logarUsuario(usuario);
 
       console.log('Resposta do login:', response);
+
+      if (response.data && response.data.token) {
+        localStorage.setItem('token', response.data.token);
+
+        setUsuario({ login: '', senha: '' });
+
+        navigate('/cliente');
+        
+      } else {
+        console.error('Erro ao fazer login: Token não recebido.');
+      }
     } catch (error) {
       console.error('Erro ao fazer o login', error.message);
     }
@@ -36,10 +49,10 @@ function LogarUsuario() {
     <>
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
-        <label>Login</label>
-        <input type='text' name='login' value={usuario.login} onChange={handleChange}/>
-        <label>Senha</label>
-        <input type='password' name='senha' value={usuario.senha} onChange={handleChange}/>
+        <label htmlFor='login' >Login</label>
+        <input type='text' id='login' name='login' value={usuario.login} onChange={handleChange}/>
+        <label htmlFor='senha' >Palavra-passe</label>
+        <input type='password' id='senha' name='senha' value={usuario.senha} onChange={handleChange}/>
         <button type='submit'>Entrar</button>
       </form>
     </>

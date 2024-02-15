@@ -4,9 +4,9 @@ export async function addUsuario(usuario){
   return await api.post("/usuario",usuario).then(response=>response);
 }
 
-export async function Usuario(){
-  return await api.get(`/usuarios`).then(response=>response);
-}
+export async function getUsuarios(args){
+  return await api.get(`/usuarios`, args).then(response=>response);
+} 
 
 export async function removeUsuario(id){
   return await api.delete(`/usuario/${id}`).then(response=>response);
