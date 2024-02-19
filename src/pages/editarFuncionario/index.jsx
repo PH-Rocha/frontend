@@ -3,7 +3,7 @@ import { editFuncionario } from "../../services/request_api";
 import { useNavigate } from "react-router-dom";
 import { getUsuarios } from "../../services/request_api";
 
-function editFuncionario() {
+function EditarFuncionario() {
   const navigate = useNavigate();
   const [funcionario, setFuncionario] = useState ({
     id: '',
@@ -71,13 +71,13 @@ function editFuncionario() {
       <label>Novo Cargo</label>
       <input type="text" name="novoCargo" value={funcionario.novoCargo} onChange={handleChange} />
       <label htmlFor="usuario">Usuários:</label>
-      <select name="id_usuario" id="usuario" value={cliente.id_usuario} onChange={handleChange}>
+      <select name="id_usuario" id="usuario" value={funcionario.id_usuario} onChange={handleChange}>
           <option value="">Selecione um usuário</option>
-          {usuarios.map(usuario => {
+          {usuarios.map(usuario => (
             <option key={usuario.login} value={usuario.login}>
-              {usuario.login}
+              {usuario.novoNome}
             </option>
-          })}
+          ))}
         </select>
       <button type="submit">Salvar</button>
     </form>
@@ -86,4 +86,4 @@ function editFuncionario() {
 }
 
 
-export default editFuncionario;
+export default EditarFuncionario;

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { editUsuario } from "../../services/request_api";
 import { useNavigate } from "react-router-dom";
 
-function editUsuario() {
+function EditarUsuario() {
   const navigate = useNavigate();
   const [usuario, setUsuario] = useState ({
     id: '',
@@ -58,4 +58,4 @@ function editUsuario() {
   )
 }
 
-export default editUsuario;
+export default EditarUsuario;

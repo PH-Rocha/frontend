@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { addUsuario } from '../../services/request_api';
+import { useNavigate } from 'react-router-dom';
 
 function AddUsuario() {
+  const navigate = useNavigate();
   const [usuario, setUsuario] = useState({
     login:'',
     email:'',
@@ -24,7 +26,8 @@ function AddUsuario() {
     console.log(usuario);
 
     await addUsuario(usuario);
-    
+
+    navigate('/Home');
   }
 
   return(

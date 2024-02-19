@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { removeCliente } from "../../services/request_api";
 import { useNavigate } from "react-router-dom";
 
-function removeCliente() {
+function RemoveCliente() {
   const navigate = useNavigate();
   const [token, setToken] = useState('');
   const [codigoExclusao, setCodigoExclusao] = useState('');
@@ -44,4 +44,4 @@ function removeCliente() {
   )
 }
 
-export default removeCliente;
+export default RemoveCliente;

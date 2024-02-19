@@ -17,13 +17,16 @@ function AddCliente() {
     async function fetchUsuarios() {
       try {
         const token = localStorage.getItem('token');
+        console.log('token:', token);
 
         if (!token) {
+          console.log('Token não encontrado. Redirecionando para /login');
           navigate("/login");
           return;
         }
 
         const response = await getUsuarios({headers: {Authorization:`${token}`}});
+        console.log('Usuários recuperados:', response.data);
         setUsuarios(response.data);
       } catch (error) {
         console.error('Erro ao buscas usuários:', error);
@@ -46,15 +49,24 @@ function AddCliente() {
 
   const salvaCliente = async (event) => {
     event.preventDefault();
-    console.log(cliente);
+    console.log('Cliente a ser salvo:',cliente);
 
     const token = localStorage.getItem('token');
+    console.log('Token:', token);
+
     if (!token) {
+      console.log('Token não encontrado. Redirecionando para /login');
       navigate("/login");
       return;
     }
 
-    await addCliente(cliente);
+    try {
+      await addCliente(cliente, token);
+      console.log('Cliente adicionado com sucesso! Redirecionando para /Home');
+      navigate('/Home');
+    } catch (error) {
+      console.error('Erro ao adicionar cliente:', error);
+    }
   }
 
   return (

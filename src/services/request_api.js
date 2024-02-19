@@ -16,7 +16,7 @@ export async function editUsuario(usuario){
   return await api.put('/usuario', usuario).then(response=>response);
 }
 
-export async function modifcarSenha() {
+export async function modificarSenha() {
   return await api.post('/usuario/modify-password').then(response=>response);
 }
 

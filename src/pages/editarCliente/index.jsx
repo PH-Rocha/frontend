@@ -3,7 +3,7 @@ import { editCliente } from "../../services/request_api";
 import { getUsuarios } from "../../services/request_api";
 import { useNavigate } from "react-router-dom";
 
-function editCliente() {
+function EditarCliente() {
   const navigate = useNavigate();
   const [cliente, setCliente] = useState({
     id: '',
@@ -69,11 +69,11 @@ function editCliente() {
       <label htmlFor="usuario">Usuários:</label>
       <select name="id_usuario" id="usuario" value={cliente.id_usuario} onChange={handleChange}>
           <option value="">Selecione um usuário</option>
-          {usuarios.map(usuario => {
+          {usuarios.map(usuario => (
             <option key={usuario.login} value={usuario.login}>
-              {usuario.login}
+              {usuario.novoNome}
             </option>
-          })}
+          ))}
         </select>
       <button type="submit">Salvar</button>
     </form>
@@ -82,4 +82,4 @@ function editCliente() {
 } 
 
 
-export default editCliente;
+export default EditarCliente;

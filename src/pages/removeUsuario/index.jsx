@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { removeUsuario } from "../../services/request_api";
 import { useNavigate } from "react-router-dom";
 
-function removeUsuario(){
+function RemoveUsuario(){
   const navigate = useNavigate();
   const [token, setToken] = useState('');
   const [codigoExclusao, setCodigoExclusao] = useState('');
@@ -44,4 +44,4 @@ function removeUsuario(){
   );
 }
 
-export default removeUsuario;
+export default RemoveUsuario;

@@ -72,11 +72,11 @@ function AddFuncionario() {
         <label htmlFor="usuario">Usuários:</label>
         <select name="id_usuario" id="usuario" value={funcionario.id_usuario} onChange={handleChange}>
           <option value="">Selecione um usuário</option>
-          {usuarios.map(usuario => {
+          {usuarios.map(usuario => (
             <option key={usuario.login} value={usuario.login}>
-              {usuario.login}
+              {usuario.nome}
             </option>
-          })}
+          ))}
         </select>
         <button type='submit'>Salvar</button>
       </form>
