@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { logarUsuario } from '../../services/request_api';
 
 function LogarUsuario() {
-  const navigate = useNavigate();
   const [ usuario, setUsuario ] = useState({
     login: '',
     senha: ''
@@ -35,7 +34,6 @@ function LogarUsuario() {
 
         setUsuario({ login: '', senha: '' });
 
-        navigate('/cliente');
         
       } else {
         console.error('Erro ao fazer login: Token não recebido.');
@@ -55,6 +53,7 @@ function LogarUsuario() {
         <input type='password' id='senha' name='senha' value={usuario.senha} onChange={handleChange}/>
         <button type='submit'>Entrar</button>
       </form>
+      <p>Não tem conta?<Link to="/adicionar">Cadastre-se aqui</Link></p>
     </>
   );
 }

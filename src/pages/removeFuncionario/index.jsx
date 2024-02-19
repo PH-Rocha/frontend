@@ -1,8 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { removeFuncionario } from "../../services/request_api";
+import { useNavigate } from "react-router-dom";
 
 function removeFuncionario(){
+  const navigate = useNavigate();
+  const [token, setToken] = useState('');
   const [codigoExclusao, setCodigoExclusao] = useState('');
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+      return;
+    }
+
+    setToken(token);
+  }, [navigate]);
 
   const handleChange = (event) => {
     setCodigoExclusao(event.target.value);
@@ -12,7 +25,11 @@ function removeFuncionario(){
     event.preventDefault();
     console.log('Código de Exclusão:', codigoExclusao);
 
-    await removeFuncionario(codigoExclusao);
+    try{
+      await removeFuncionario(codigoExclusao, { Authorization: token });
+    } catch (error) {
+      console.error('Erro ao deletar funcionário:', error);
+    }
   }
 
   return(

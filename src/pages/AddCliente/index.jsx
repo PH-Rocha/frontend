@@ -70,7 +70,7 @@ function AddCliente() {
           <option value="">Selecione um usuário</option>
           {usuarios.map(usuario => (
             <option key={usuario.login} value={usuario.login}>
-              {usuario.nome}
+              {usuario.login}
             </option>
           ))}
         </select>
