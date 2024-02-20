@@ -19,13 +19,16 @@ function EditarFuncionario() {
     async function fetchUsuarios() {
       try {
         const token = localStorage.getItem('token');
+        console.log('token:', token);
 
         if (!token) {
+          console.log('Token não encontrado! Redirecionando para /login');
           navigate("/login");
           return;
         }
 
-        const response = await getUsuarios({ Headers: { Authorization: `${token}`}});
+        const response = await getUsuarios({ headers: { Authorization:`${token}`}});
+        console.log('Usuários recuperados:', response.data);
         setUsuarios(response.data);
       } catch (error) {
         console.error('Erro ao buscar usuários:', error);
@@ -50,12 +53,22 @@ function EditarFuncionario() {
     console.log('Novos dados do funcionário:', funcionario);
 
     const token = localStorage.getItem('token');
+    console.log('token', token);
+
     if (!token) {
+      console.log('Token não encontrado. Redirecionando para /login')
       navigate('/login');
       return;
     }
 
-    await editFuncionario(funcionario);
+    try {
+      await editFuncionario(funcionario, token);
+      console.log('Funcionário editado com sucesso! Redirecionando para /Home')
+      navigate('/Home');
+    } catch (error) {
+      console.error('Erro ao editar funcionário:', error);
+    }
+    
   }
 
   return(
@@ -74,8 +87,8 @@ function EditarFuncionario() {
       <select name="id_usuario" id="usuario" value={funcionario.id_usuario} onChange={handleChange}>
           <option value="">Selecione um usuário</option>
           {usuarios.map(usuario => (
-            <option key={usuario.login} value={usuario.login}>
-              {usuario.novoNome}
+            <option key={usuario.id} value={usuario.id}>
+              {usuario.login}
             </option>
           ))}
         </select>

@@ -25,7 +25,7 @@ function AddCliente() {
           return;
         }
 
-        const response = await getUsuarios({headers: {Authorization:`${token}`}});
+        const response = await getUsuarios({headers: {Authorization: `${token}`}});
         console.log('Usuários recuperados:', response.data);
         setUsuarios(response.data);
       } catch (error) {
@@ -81,7 +81,7 @@ function AddCliente() {
         <select name="id_usuario" id="id_usuario" value={cliente.id_usuario} onChange={handleChange}>
           <option value="">Selecione um usuário</option>
           {usuarios.map(usuario => (
-            <option key={usuario.login} value={usuario.login}>
+            <option key={usuario.id} value={usuario.id}>
               {usuario.login}
             </option>
           ))}

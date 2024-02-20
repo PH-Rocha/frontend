@@ -19,13 +19,16 @@ function EditarCliente() {
     async function fetchUsuarios() {
       try {
         const token = localStorage.getItem('token');
+        console.log('token', token);
 
         if (!token) {
+          console.log('Token não encontrado. Redirecionando para /login');
           navigate('/login');
           return;
         }
 
-        const response = await getUsuarios({ headers: { Authorization: `${token}`}});
+        const response = await getUsuarios({headers: {Authorization:`${token}`}});
+        console.log('Usuários recuperados:', response.data);
         setUsuarios(response.data);
       } catch (error) {
         console.error('Erro ao buscar usuários:', error);
@@ -48,12 +51,21 @@ function EditarCliente() {
     console.log('Novos dados do cliente:', cliente);
 
     const token = localStorage.getItem('token');
+    console.log('token:', token);
+
     if (!token) {
+      console.log('Token não encontrado. Redirecionando para /login');
       navigate('/login');
       return;
     }
 
-    await editCliente(cliente);
+    try{
+      await editCliente(cliente, token);
+      console.log('Cliente editado com sucesso! Redirecionando para /Home');
+      navigate('/Home');
+    } catch (error) {
+      console.error('Erro ao editar cliente:', error);
+    }
   }
 
   return(
@@ -70,8 +82,8 @@ function EditarCliente() {
       <select name="id_usuario" id="usuario" value={cliente.id_usuario} onChange={handleChange}>
           <option value="">Selecione um usuário</option>
           {usuarios.map(usuario => (
-            <option key={usuario.login} value={usuario.login}>
-              {usuario.novoNome}
+            <option key={usuario.id} value={usuario.id}>
+              {usuario.login}
             </option>
           ))}
         </select>

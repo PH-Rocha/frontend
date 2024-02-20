@@ -34,6 +34,8 @@ function LogarUsuario() {
         localStorage.setItem('token', response.data.token);
 
         setUsuario({ login: '', senha: '' });
+
+        navigate('/Home');
         
       } else {
         console.error('Erro ao fazer login: Token não recebido.');

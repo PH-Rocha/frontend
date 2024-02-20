@@ -18,13 +18,16 @@ function AddFuncionario() {
     async function fetchUsuarios() {
       try {
         const token = localStorage.getItem('token');
+        console.log('token:', token)
 
         if (!token) {
+          console.log('Token não encontrado. Redirecionando para /login')
           navigate("/login");
           return;
         }
 
-        const response = await getUsuarios({ Headers: { Authorization: `${token}`}});
+        const response = await getUsuarios({headers: {Authorization: `${token}`}});
+        console.log('Usuários recuperados:', response.data);
         setUsuarios(response.data);
       } catch (error) {
         console.error('Erro ao buscar usuários:', error);
@@ -47,18 +50,25 @@ function AddFuncionario() {
   }
 
   const salvaFuncionario = async (event) => {
-    event.preventDeafult();
-    console.log(funcionario);
-
+    event.preventDefault();
+    console.log('Funcionário a ser salvo:', funcionario);
 
     const token = localStorage.getItem('token');
+    console.log('token:', token);
+
     if (!token) {
+      console.log('Token não encontrado. Redirecionado para /login')
       navigate('/login');
       return;
     }
 
-    await addFuncionario(funcionario);
-
+    try{
+      await addFuncionario(funcionario, token);
+      console.log('Funcionário adicionado com sucesso! Redirecionando para /Home');
+      navigate('/Home');
+    } catch (error) {
+      console.log('Erro ao adicionar funcionário', error);
+    }
   }
 
   return (
@@ -69,12 +79,14 @@ function AddFuncionario() {
         <input type="text"  id="nome" name="nome" value={funcionario.nome} onChange={handleChange}/>
         <label htmlFor="idade">idade</label>
         <input type="text" id="idade" name="idade" value={funcionario.idade} onChange={handleChange}/>
+        <label htmlFor="cargo">Cargo:</label>
+        <input id="cargo" type="text" name="cargo" value={funcionario.cargo} onChange={handleChange}/>
         <label htmlFor="usuario">Usuários:</label>
         <select name="id_usuario" id="usuario" value={funcionario.id_usuario} onChange={handleChange}>
           <option value="">Selecione um usuário</option>
           {usuarios.map(usuario => (
-            <option key={usuario.login} value={usuario.login}>
-              {usuario.nome}
+            <option key={usuario.id} value={usuario.id}>
+              {usuario.login}
             </option>
           ))}
         </select>

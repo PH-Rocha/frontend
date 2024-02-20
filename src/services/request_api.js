@@ -30,7 +30,7 @@ export async function addCliente(cliente, token){
   }
   return await api.post('/cliente', cliente, {
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization:`${token}`
     }
   }).then(response => response);
 }
@@ -41,7 +41,7 @@ export async function getCliente(id, token){
   }
   return await api.get(`/cliente/${id}`, {
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization:`${token}`
     }
   }).then(response => response);
 }
@@ -52,7 +52,7 @@ export async function getClientes(token){
   }
   return await api.get('/clientes', {
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization: `${token}`
     }
   }).then(response => response);
 }
@@ -63,7 +63,7 @@ export async function editCliente(cliente, token){
   }
   return await api.put('/cliente',cliente, {
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization:`${token}`
     }
   }).then(response => response);
 }
@@ -74,7 +74,7 @@ export async function removeCliente(id, token){
   } 
   return await api.delete(`/cliente/${id}`, {
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization: `${token}`
     }
   }).then(response => response);
 }
@@ -85,7 +85,7 @@ export async function addFuncionario(funcionario, token){
   }
   return await api.post('/funcionario', funcionario, {
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization:`${token}`
     }
   }).then(response => response);
 }
@@ -96,7 +96,7 @@ export async function getFuncionario(id, token){
   }
   return await api.get(`/funcionario/${id}`, {
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization: `${token}`
     }
   }).then(response => response);
 }
@@ -107,7 +107,7 @@ export async function getFuncionarios(token){
   }
   return await api.get('/funcionarios', {
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization: `${token}`
     }
   }).then(response => response);
 }
@@ -118,7 +118,7 @@ export async function editFuncionario(funcionario, token){
   }
   return await api.put('/funcionario', funcionario, {
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization:`${token}`
     }
   }).then(response => response);
 }
@@ -129,7 +129,7 @@ export async function removeFuncionario(id, token){
   }
   return await api.delete(`/funcionario/${id}`, {
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization: `${token}`
     }
   }).then(response => response);
 }
