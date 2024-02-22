@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import HomeTeste from './pages/Home';
 import AddUsuario from './pages/AddUsuario';
 import LogarUsuario from './pages/Login';
@@ -12,14 +12,15 @@ import RemoveCliente from './pages/removeCliente';
 import RemoveFuncionario from './pages/removeFuncionario';
 import RemoveUsuario from './pages/removeUsuario';
 import EditarSenha from './pages/modificarSenha';
+import Dashboard from './pages/dashboard';
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={<Navigate to='/Home'/>}/>
-        <Route path='/Home' element={<HomeTeste/>} />
+        <Route path='/' element={<HomeTeste/>}/>
         <Route path='/login' element={<LogarUsuario/>}/>
+        <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path='/adicionar' element={<AddUsuario/>}/>
         <Route path='/adicionar-cliente' element={<AddCliente/>}/>
         <Route path='/adicionar-funcionario' element={<AddFuncionario/>}/>

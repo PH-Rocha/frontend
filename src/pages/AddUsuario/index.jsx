@@ -27,7 +27,7 @@ function AddUsuario() {
 
     await addUsuario(usuario);
 
-    navigate('/Home');
+    navigate('/login');
   }
 
   return(

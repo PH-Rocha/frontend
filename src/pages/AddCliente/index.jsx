@@ -63,7 +63,7 @@ function AddCliente() {
     try {
       await addCliente(cliente, token);
       console.log('Cliente adicionado com sucesso! Redirecionando para /Home');
-      navigate('/Home');
+      navigate('/Dashboard');
     } catch (error) {
       console.error('Erro ao adicionar cliente:', error);
     }

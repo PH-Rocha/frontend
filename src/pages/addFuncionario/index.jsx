@@ -65,7 +65,7 @@ function AddFuncionario() {
     try{
       await addFuncionario(funcionario, token);
       console.log('Funcionário adicionado com sucesso! Redirecionando para /Home');
-      navigate('/Home');
+      navigate('/Dashboard');
     } catch (error) {
       console.log('Erro ao adicionar funcionário', error);
     }

@@ -35,7 +35,7 @@ function LogarUsuario() {
 
         setUsuario({ login: '', senha: '' });
 
-        navigate('/Home');
+        navigate('/Dashboard');
         
       } else {
         console.error('Erro ao fazer login: Token não recebido.');

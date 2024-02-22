@@ -38,8 +38,25 @@ const Dashboard = () => {
   };
 
   return (
-    <>
-    
-    </>
+    <div className="dashboard">
+      <nav>
+        <ul>
+          <li onClick={() => setCurrentPage('EditarSenha')}>Editar Senha</li>
+          <li onClick={() => setCurrentPage('EditarCliente')}>Editar Cliente</li>
+          <li onClick={() => setCurrentPage('EditarFuncionario')}>Editar Funcionário</li>
+          <li onClick={() => setCurrentPage('EditarUsuario')}>Editar Usuário</li>
+          <li onClick={() => setCurrentPage('AddCliente')}>Adicionar Cliente</li>
+          <li onClick={() => setCurrentPage('AddFuncionario')}>Adicionar Funcionário</li>
+          <li onClick={() => setCurrentPage('RemoveCliente')}>Remover Cliente</li>
+          <li onClick={() => setCurrentPage('RemoveFuncionario')}>Remover Funcionário</li>
+          <li onClick={() => setCurrentPage('RemoveUsuario')}>Remover Usuário</li>
+        </ul>
+      </nav>
+      <div className="main-content">
+        {renderPage()}
+      </div>
+    </div>
   )
 }
+
+export default Dashboard
