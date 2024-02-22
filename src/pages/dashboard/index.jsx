@@ -8,6 +8,7 @@ import EditarUsuario from "../editarUsuario";
 import RemoveCliente from "../removeCliente";
 import RemoveFuncionario from "../removeFuncionario";
 import RemoveUsuario from "../removeUsuario";
+import TestePage from "../ListarDados";
 
 const Dashboard = () => {
   const [currentPage, setCurrentPage] = useState('EditarSenha');
@@ -32,6 +33,8 @@ const Dashboard = () => {
         return <RemoveFuncionario/>
       case 'RemoveUsuario':
         return <RemoveUsuario/>
+      case 'TestePage': 
+        return <TestePage/>
       default: 
       return null;
     }
@@ -50,6 +53,7 @@ const Dashboard = () => {
           <li onClick={() => setCurrentPage('RemoveCliente')}>Remover Cliente</li>
           <li onClick={() => setCurrentPage('RemoveFuncionario')}>Remover Funcionário</li>
           <li onClick={() => setCurrentPage('RemoveUsuario')}>Remover Usuário</li>
+          <li onClick={() => setCurrentPage('TestePage')}>Listar Dados</li>
         </ul>
       </nav>
       <div className="main-content">
