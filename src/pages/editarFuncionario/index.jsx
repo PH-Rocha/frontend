@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-import { editFuncionario } from "../../services/request_api";
-import { useNavigate } from "react-router-dom";
+import { editFuncionario, getFuncionario } from "../../services/request_api";
+import { useNavigate, useParams } from "react-router-dom";
 import { getUsuarios } from "../../services/request_api";
 
 function EditarFuncionario() {
+  const {id} = useParams();
   const navigate = useNavigate();
   const [funcionario, setFuncionario] = useState ({
     id: '',
-    novoNome: '',
-    novaIdade: '',
-    novoCargo: '',
+    nome: '',
+    idade: '',
+    cargo: '',
     id_usuario: ''
   });
 
@@ -39,6 +40,26 @@ function EditarFuncionario() {
   }, [navigate]);
 
 
+  useEffect(() => {
+    if (id) {
+      buscarFuncionario(id);
+    }
+  },[id]);
+
+  const buscarFuncionario = async(id) => {
+    try {
+      const token = localStorage.getItem('token');
+      console.log('token', token);
+
+      const funcionarioDados = await getFuncionario(id, token);
+      console.log('dados do funcionário', funcionarioDados.data);
+
+      setFuncionario(funcionarioDados.data);
+    } catch (error) {
+      console.error('Erro ao buscar o funcionário:', error);
+    }
+  }
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -63,8 +84,8 @@ function EditarFuncionario() {
 
     try {
       await editFuncionario(funcionario, token);
-      console.log('Funcionário editado com sucesso! Redirecionando para /Home')
-      navigate('/Home');
+      console.log('Funcionário editado com sucesso! Redirecionando para /dashboard');
+      navigate('/dashboard');
     } catch (error) {
       console.error('Erro ao editar funcionário:', error);
     }
@@ -75,14 +96,14 @@ function EditarFuncionario() {
     <>
     <h1>Editar Funcionário</h1>
     <form onSubmit={handleEdit}>
-      <label>id do funcionário</label>
+      <label>id:</label>
       <input type="text" name="id" value={funcionario.id} onChange={handleChange} />
-      <label>Novo Nome</label>
-      <input type="text" name="novoNome" value={funcionario.novoNome} onChange={handleChange} />
-      <label>Nova Idade</label>
-      <input type="text" name="novaIdade" value={funcionario.novaIdade} onChange={handleChange} />
-      <label>Novo Cargo</label>
-      <input type="text" name="novoCargo" value={funcionario.novoCargo} onChange={handleChange} />
+      <label>Novo Nome:</label>
+      <input type="text" name="nome" value={funcionario.nome} onChange={handleChange} />
+      <label>Nova Idade:</label>
+      <input type="text" name="idade" value={funcionario.idade} onChange={handleChange} />
+      <label>Novo Cargo:</label>
+      <input type="text" name="cargo" value={funcionario.cargo} onChange={handleChange} />
       <label htmlFor="usuario">Usuários:</label>
       <select name="id_usuario" id="usuario" value={funcionario.id_usuario} onChange={handleChange}>
           <option value="">Selecione um usuário</option>

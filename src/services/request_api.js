@@ -8,12 +8,37 @@ export async function getUsuarios(args){
   return await api.get(`/usuarios`, args).then(response=>response);
 } 
 
-export async function removeUsuario(id){
-  return await api.delete(`/usuario/${id}`).then(response=>response);
+export async function getUsuario(id, token) {
+  if (!token) {
+    throw new Error('Token de autenticação não fornecido');
+  }
+  return await api.get(`/usuario/${id}`, {
+    headers: {
+      Authorization:`${token}`
+    }
+  }).then(response => response);
 }
 
-export async function editUsuario(usuario){
-  return await api.put('/usuario', usuario).then(response=>response);
+export async function removeUsuario(id, token){
+  if (!token) {
+    throw new Error('token de autenticação não fornecido');
+  }
+  return await api.delete(`/usuario/${id}`, {
+    headers: {
+      Authorization: `${token}`
+    }
+  }).then(response=>response);
+}
+
+export async function editUsuario(usuario, token){
+  if (!token) {
+    throw new Error('token de autenticação não fornecido');
+  }
+  return await api.put('/usuario',usuario, {
+    headers: {
+      Authorization:`${token}`
+    }
+  }).then(response=>response);
 }
 
 export async function modificarSenha() {

@@ -1,27 +1,45 @@
 import { useEffect, useState } from "react";
-import { editUsuario } from "../../services/request_api";
-import { useNavigate } from "react-router-dom";
+import { editUsuario, getUsuario } from "../../services/request_api";
+import { useNavigate, useParams } from "react-router-dom";
 
 function EditarUsuario() {
+  const {id} = useParams();
   const navigate = useNavigate();
   const [usuario, setUsuario] = useState ({
     id: '',
-    novoLogin: '',
-    novoEmail: ''
+    login: '',
+    email: ''
   });
-
-
-  const [ token, setToken] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+    console.log('token', token);
     if (!token) {
+      console.log('Token não encontrado! Redirecionando para /login');
       navigate('/login');
       return;
     }
-
-    setToken(token);
   }, [navigate]);
+
+  useEffect(() => {
+    if (id) {
+      buscarUsuario(id);
+    }
+  },[id]);
+
+  const buscarUsuario = async(id) => {
+    try {
+      const token = localStorage.getItem('token');
+      console.log('token', token);
+
+      const usuarioDados = await getUsuario(id, token);
+      console.log('dados do usuario:', usuarioDados.data);
+
+      setUsuario(usuarioDados.data);
+    } catch (error) {
+      console.error('Erro ao buscar usuário:', error);
+    }
+  }
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -35,8 +53,19 @@ function EditarUsuario() {
     event.preventDefault();
     console.log('Novos dados do Usuário:', usuario);
 
+    const token = localStorage.getItem('token');
+    console.log('token', token);
+
+    if (!token) {
+      console.log('Token não encontrado! Redirecionando para /login');
+      navigate('/login');
+      return;
+    }
+
     try {
-      await editUsuario(usuario, { Authorization: token });
+      await editUsuario(usuario, token);
+      console.log('Usuário editado com sucesso! Redirecionando para /dashboard');
+      navigate('/dashboard');
     } catch (error) {
       console.error('Erro ao editar o usuário:', error);
     }
@@ -44,14 +73,14 @@ function EditarUsuario() {
 
   return (
     <>
-    <h1>Editae Usuário</h1>
+    <h1>Editar Usuário</h1>
     <form onSubmit={handleEdit}>
       <label>Id do Usuário</label>
       <input type="text" name="id" value={usuario.id} onChange={handleChange} />
       <label>Novo Login</label>
-      <input type="text" name="novoLogin" value={usuario.novoLogin} onChange={handleChange} />
+      <input type="text" name="login" value={usuario.login} onChange={handleChange} />
       <label>Novo Email</label>
-      <input type="text" name="novoEmail" value={usuario.novoEmail} onChange={handleChange} />
+      <input type="text" name="email" value={usuario.email} onChange={handleChange} />
       <button type="submit">Salvar</button>
     </form>
     </>

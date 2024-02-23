@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { editCliente } from "../../services/request_api";
+import { editCliente, getCliente } from "../../services/request_api";
 import { getUsuarios } from "../../services/request_api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function EditarCliente() {
+  const {id} = useParams();
   const navigate = useNavigate();
   const [cliente, setCliente] = useState({
     id: '',
-    novoNome: '',
-    novaIdade: '',
+    nome: '',
+    idade: '',
     id_usuario: ''
   });
 
@@ -38,6 +39,26 @@ function EditarCliente() {
     fetchUsuarios();
   }, [navigate]);
 
+  useEffect(() => {
+    if (id) {
+      buscarCliente(id);
+    }
+  },[id]);
+
+  const buscarCliente = async(id) => {
+    try {
+      const token = localStorage.getItem('token');
+      console.log('token', token);
+
+      const clienteDados = await getCliente(id, token);
+      console.log('dados do cliente:', clienteDados.data);
+
+      setCliente(clienteDados.data);
+    } catch (error) {
+      console.error('Erro ao buscar cliente:', error);
+    }
+  };
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setCliente((clienteAnterior) => ({
@@ -61,8 +82,8 @@ function EditarCliente() {
 
     try{
       await editCliente(cliente, token);
-      console.log('Cliente editado com sucesso! Redirecionando para /Home');
-      navigate('/Home');
+      console.log('Cliente editado com sucesso! Redirecionando para /Dashboard');
+      navigate('/Dashboard');
     } catch (error) {
       console.error('Erro ao editar cliente:', error);
     }
@@ -72,12 +93,12 @@ function EditarCliente() {
     <>
     <h1>Editar Cliente</h1>
     <form onSubmit={handleEdit}>
-      <label>Id do cliente</label>
-      <input type="text" name="id" value={cliente.id} onChange={handleChange} />
-      <label>Novo nome</label>
-      <input type="text" name="novoNome" value={cliente.novoNome} onChange={handleChange} />
-      <label>Nova idade</label>
-      <input type="text" name="novaIdade" value={cliente.novaIdade} onChange={handleChange} />
+      <label>Id:</label>
+      <input type="text" name="id" value={cliente.id} onChange={handleChange}/>
+      <label>Novo nome:</label>
+      <input type="text" name="nome" value={cliente.nome} onChange={handleChange} />
+      <label>Nova idade:</label>
+      <input type="text" name="idade" value={cliente.idade} onChange={handleChange} />
       <label htmlFor="usuario">Usuários:</label>
       <select name="id_usuario" id="usuario" value={cliente.id_usuario} onChange={handleChange}>
           <option value="">Selecione um usuário</option>
