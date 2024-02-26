@@ -1,44 +1,42 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { removeUsuario } from "../../services/request_api";
 import { useNavigate } from "react-router-dom";
 
-function RemoveUsuario(){
+function RemoveUsuario() {
   const navigate = useNavigate();
-  const [token, setToken] = useState('');
+  const [id, setId] = useState('');
   const [codigoExclusao, setCodigoExclusao] = useState('');
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      navigate('/login');
-      return;
-    }
+  const handleChangeId = (event) => {
+    setId(event.target.value);
+  }
 
-    setToken(token);
-  }, [navigate]);
-
-  const handleChange = (event) => {
+  const handleChangeCodigoExclusao = (event) => {
     setCodigoExclusao(event.target.value);
   }
 
-  const handleDelete = async (event) => {
+  const handleRemover = async (event) => {
     event.preventDefault();
-    console.log('Código de Exclusão:', codigoExclusao);
+    const token = localStorage.getItem('token');
 
     try {
-      await removeUsuario(codigoExclusao, { Authorization: token });
+      await removeUsuario(id, token);
+      console.log('Cliente removido com sucesso! Redirecionado para /dashboard');
+      navigate('/dashboard');
     } catch (error) {
-      console.error('Erro ao deletar o usuário:', error);
+      console.error('Erro ao remover cliente:', error);
     }
   }
 
-  return(
+  return (
     <>
-      <h1>Deletar Usuário</h1>
-      <form onSubmit={handleDelete}>  
-        <label>Código de exclusão</label>
-        <input type="text" value={codigoExclusao} onChange={handleChange}/>
-        <button type="submit">Excluir</button>
+      <h1>Remover Usuário</h1>
+      <form onSubmit={handleRemover}>
+        <label>Informe o ID do Usuário:</label>
+        <input type="text" value={id} onChange={handleChangeId}/>
+        <label>Código de Exclusão:</label>
+        <input type="text" value={codigoExclusao} onChange={handleChangeCodigoExclusao}/>
+        <button type="submit">Remover Cliente</button>
       </form>
     </>
   );
