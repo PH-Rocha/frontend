@@ -41,10 +41,16 @@ export async function editUsuario(usuario, token){
   }).then(response=>response);
 }
 
-export async function modificarSenha() {
-  return await api.post('/usuario/modify-password').then(response=>response);
+export async function modificarSenha(id, senha, novaSenha, token) {
+  if (!token) {
+    throw new Error('token de autenticação não fornecido');
+  }
+  return await api.post(`/usuario/modify/${id}`, {senha, novaSenha}, {
+    headers: {
+      Authorization:`${token}`
+    }
+  }).then(response=>response);
 }
-
 export async function logarUsuario(usuario) {
   return await api.post('/usuario/login', usuario).then(response => response);
 }

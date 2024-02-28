@@ -21,10 +21,10 @@ function RemoveFuncionario() {
 
     try {
       await removeFuncionario(id, token);
-      console.log('Cliente removido com sucesso! Redirecionado para /dashboard');
+      console.log('Funcionário removido com sucesso! Redirecionado para /dashboard');
       navigate('/dashboard');
     } catch (error) {
-      console.error('Erro ao remover cliente:', error);
+      console.error('Erro ao remover Funcionário:', error);
     }
   }
 

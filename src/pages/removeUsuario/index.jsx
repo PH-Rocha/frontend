@@ -21,10 +21,10 @@ function RemoveUsuario() {
 
     try {
       await removeUsuario(id, token);
-      console.log('Cliente removido com sucesso! Redirecionado para /dashboard');
+      console.log('Usuário removido com sucesso! Redirecionado para /dashboard');
       navigate('/dashboard');
     } catch (error) {
-      console.error('Erro ao remover cliente:', error);
+      console.error('Erro ao remover usuário:', error);
     }
   }
 

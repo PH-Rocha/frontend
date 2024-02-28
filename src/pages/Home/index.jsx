@@ -10,9 +10,6 @@ function HomeTeste() {
           <Link to="/login">Fazer login</Link>
         </li>
         <li>
-          <Link to={"/modificar-senha"}>Mudar a senha</Link>
-        </li>
-        <li>
           <Link to="/adicionar">Adicionar Usuário</Link>
         </li>
       </ul>
