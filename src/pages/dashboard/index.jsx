@@ -9,20 +9,23 @@ import RemoveCliente from "../removeCliente";
 import RemoveFuncionario from "../removeFuncionario";
 import RemoveUsuario from "../removeUsuario";
 import TestePage from "../ListarDados";
+import PerfilPage from "../perfil";
 
 const Dashboard = () => {
-  const [currentPage, setCurrentPage] = useState('EditarSenha');
+  const [currentPage, setCurrentPage] = useState('PerfilPage');
 
   const renderPage = () => {
     switch (currentPage) {
-      case 'EditarSenha':
-        return <EditarSenha/>
+      case 'PerfilPage':
+        return <PerfilPage/>
       case 'EditarCliente':
         return <EditarCliente/>
       case 'EditarFuncionario': 
         return <EditarFuncionario/>
       case 'EditarUsuario':
         return <EditarUsuario/>
+      case 'EditarSenha':
+        return <EditarSenha/>
       case 'AddCliente':
         return <AddCliente/>
       case 'AddFuncionario':
@@ -44,10 +47,11 @@ const Dashboard = () => {
     <div className="dashboard">
       <nav>
         <ul>
-          <li onClick={() => setCurrentPage('EditarSenha')}>Editar Senha</li>
+          <li><a href="#" onClick={() => setCurrentPage('PerfilPage')}>Perfil</a></li>
           <li onClick={() => setCurrentPage('EditarCliente')}>Editar Cliente</li>
           <li onClick={() => setCurrentPage('EditarFuncionario')}>Editar Funcionário</li>
           <li onClick={() => setCurrentPage('EditarUsuario')}>Editar Usuário</li>
+          <li onClick={() => setCurrentPage('EditarSenha')}>Editar Senha</li>
           <li onClick={() => setCurrentPage('AddCliente')}>Adicionar Cliente</li>
           <li onClick={() => setCurrentPage('AddFuncionario')}>Adicionar Funcionário</li>
           <li onClick={() => setCurrentPage('RemoveCliente')}>Remover Cliente</li>

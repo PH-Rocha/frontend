@@ -39,9 +39,6 @@ function TestePage() {
           {usuarios.map(usuario => (
             <li key={usuario.id}>{usuario.login}</li>
           ))}
-          {usuarios.map(usuario => (
-            <li key={usuario.senha}>{usuario.senha}</li>
-          ))}
         </ul>
 
       <h2>lista de Clientes</h2>

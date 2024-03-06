@@ -33,6 +33,10 @@ function LogarUsuario() {
       if (response.data && response.data.token) {
         localStorage.setItem('token', response.data.token);
 
+        localStorage.setItem('id', response.data.id);
+
+        console.log('id', response.data.id);
+
         setUsuario({ login: '', senha: '' });
 
         navigate('/Dashboard');
