@@ -48,16 +48,16 @@ const Dashboard = () => {
       <nav>
         <ul>
           <li><a href="#" onClick={() => setCurrentPage('PerfilPage')}>Perfil</a></li>
-          <li onClick={() => setCurrentPage('EditarCliente')}>Editar Cliente</li>
-          <li onClick={() => setCurrentPage('EditarFuncionario')}>Editar Funcionário</li>
-          <li onClick={() => setCurrentPage('EditarUsuario')}>Editar Usuário</li>
-          <li onClick={() => setCurrentPage('EditarSenha')}>Editar Senha</li>
-          <li onClick={() => setCurrentPage('AddCliente')}>Adicionar Cliente</li>
-          <li onClick={() => setCurrentPage('AddFuncionario')}>Adicionar Funcionário</li>
-          <li onClick={() => setCurrentPage('RemoveCliente')}>Remover Cliente</li>
-          <li onClick={() => setCurrentPage('RemoveFuncionario')}>Remover Funcionário</li>
-          <li onClick={() => setCurrentPage('RemoveUsuario')}>Remover Usuário</li>
-          <li onClick={() => setCurrentPage('TestePage')}>Listar Dados</li>
+          <li><a href="#" onClick={() => setCurrentPage('EditarCliente')}>Editar Cliente</a></li>
+            <li><a href="#" onClick={() => setCurrentPage('EditarFuncionario')}>Editar Funcionário</a></li>
+          <li><a href="#" onClick={() => setCurrentPage('EditarUsuario')}>Editar Usuário</a></li>
+          <li><a href="#" onClick={() => setCurrentPage('EditarSenha')}>Editar Senha</a></li>
+          <li><a href="#" onClick={() => setCurrentPage('AddCliente')}>Adicionar Cliente</a></li>
+          <li><a href="#" onClick={() => setCurrentPage('AddFuncionario')}>Adicionar Funcionário</a></li>
+          <li><a href="#" onClick={() => setCurrentPage('RemoveCliente')}>Deletar Cliente</a></li>
+          <li><a href="#" onClick={() => setCurrentPage('RemoveFuncionario')}>Deletar Funcionário</a></li>
+          <li><a href="#" onClick={() => setCurrentPage('RemoveUsuario')}>Deletar Usuário</a></li>
+          <li><a href="#" onClick={() => setCurrentPage('TestePage')}>Listar Dados</a></li>
         </ul>
       </nav>
       <div className="main-content">
