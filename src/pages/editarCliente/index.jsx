@@ -4,7 +4,7 @@ import { getUsuarios } from "../../services/request_api";
 import { useNavigate, useParams } from "react-router-dom";
 
 function EditarCliente() {
-  const {id} = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const [cliente, setCliente] = useState({
     id: '',
@@ -14,7 +14,7 @@ function EditarCliente() {
   });
 
 
-  const [usuarios, setUsuarios] = useState ([]);
+  const [usuarios, setUsuarios] = useState([]);
 
   useEffect(() => {
     async function fetchUsuarios() {
@@ -28,7 +28,7 @@ function EditarCliente() {
           return;
         }
 
-        const response = await getUsuarios({headers: {Authorization:`${token}`}});
+        const response = await getUsuarios({ headers: { Authorization: `${token}` } });
         console.log('Usuários recuperados:', response.data);
         setUsuarios(response.data);
       } catch (error) {
@@ -43,9 +43,9 @@ function EditarCliente() {
     if (id) {
       buscarCliente(id);
     }
-  },[id]);
+  }, [id]);
 
-  const buscarCliente = async(id) => {
+  const buscarCliente = async (id) => {
     try {
       const token = localStorage.getItem('token');
       console.log('token', token);
@@ -80,7 +80,7 @@ function EditarCliente() {
       return;
     }
 
-    try{
+    try {
       await editCliente(cliente, token);
       console.log('Cliente editado com sucesso! Redirecionando para /Dashboard');
       navigate('/Dashboard');
@@ -89,30 +89,38 @@ function EditarCliente() {
     }
   }
 
-  return(
-    <>
-    <h1>Editar Cliente</h1>
-    <form onSubmit={handleEdit}>
-      <label>Id:</label>
-      <input type="text" name="id" value={cliente.id} onChange={handleChange}/>
-      <label>Novo nome:</label>
-      <input type="text" name="nome" value={cliente.nome} onChange={handleChange} />
-      <label>Nova idade:</label>
-      <input type="text" name="idade" value={cliente.idade} onChange={handleChange} />
-      <label htmlFor="usuario">Usuários:</label>
-      <select name="id_usuario" id="usuario" value={cliente.id_usuario} onChange={handleChange}>
-          <option value="">Selecione um usuário</option>
-          {usuarios.map(usuario => (
-            <option key={usuario.id} value={usuario.id}>
-              {usuario.login}
-            </option>
-          ))}
-        </select>
-      <button type="submit">Salvar</button>
-    </form>
-    </>
+  return (
+    <div className="page-edita-cliente">
+      <h1>Editar Cliente</h1>
+      <form onSubmit={handleEdit}>
+        <div>
+          <label>Id:</label>
+          <input type="text" name="id" value={cliente.id} onChange={handleChange} />
+        </div>
+        <div>
+          <label>Novo nome:</label>
+          <input type="text" name="nome" value={cliente.nome} onChange={handleChange} />
+        </div>
+        <div>
+          <label>Nova idade:</label>
+          <input type="text" name="idade" value={cliente.idade} onChange={handleChange} />
+        </div>
+        <div>
+          <label htmlFor="usuario">Usuários:</label>
+          <select name="id_usuario" id="usuario" value={cliente.id_usuario} onChange={handleChange}>
+            <option value="">Selecione um usuário</option>
+            {usuarios.map(usuario => (
+              <option key={usuario.id} value={usuario.id}>
+                {usuario.login}
+              </option>
+            ))}
+          </select>
+        </div>
+        <button type="submit">Salvar</button>
+      </form>
+    </div>
   )
-} 
+}
 
 
 export default EditarCliente;

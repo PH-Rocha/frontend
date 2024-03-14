@@ -29,16 +29,20 @@ function RemoveFuncionario() {
   }
 
   return (
-    <>
+    <div className="page-remove-funcionario">
       <h1>Remover Funcionário</h1>
       <form onSubmit={handleRemover}>
-        <label>Informe o ID do Funcionario:</label>
-        <input type="text" value={id} onChange={handleChangeId}/>
-        <label>Código de Exclusão:</label>
-        <input type="text" value={codigoExclusao} onChange={handleChangeCodigoExclusao}/>
+        <div>
+          <label>Informe o ID do Funcionario:</label>
+          <input type="text" value={id} onChange={handleChangeId} />
+        </div>
+        <div>
+          <label>Código de Exclusão:</label>
+          <input type="text" value={codigoExclusao} onChange={handleChangeCodigoExclusao} />
+        </div>
         <button type="submit">Remover Cliente</button>
       </form>
-    </>
+    </div>
   );
 }
 

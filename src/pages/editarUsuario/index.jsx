@@ -3,9 +3,9 @@ import { editUsuario, getUsuario } from "../../services/request_api";
 import { useNavigate, useParams } from "react-router-dom";
 
 function EditarUsuario() {
-  const {id} = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
-  const [usuario, setUsuario] = useState ({
+  const [usuario, setUsuario] = useState({
     id: '',
     login: '',
     email: ''
@@ -25,9 +25,9 @@ function EditarUsuario() {
     if (id) {
       buscarUsuario(id);
     }
-  },[id]);
+  }, [id]);
 
-  const buscarUsuario = async(id) => {
+  const buscarUsuario = async (id) => {
     try {
       const token = localStorage.getItem('token');
       console.log('token', token);
@@ -72,18 +72,24 @@ function EditarUsuario() {
   }
 
   return (
-    <>
-    <h1>Editar Usuário</h1>
-    <form onSubmit={handleEdit}>
-      <label>Id do Usuário</label>
-      <input type="text" name="id" value={usuario.id} onChange={handleChange} />
-      <label>Novo Login</label>
-      <input type="text" name="login" value={usuario.login} onChange={handleChange} />
-      <label>Novo Email</label>
-      <input type="text" name="email" value={usuario.email} onChange={handleChange} />
-      <button type="submit">Salvar</button>
-    </form>
-    </>
+    <div className="page-edita-usuario">
+      <h1>Editar Usuário</h1>
+      <form onSubmit={handleEdit}>
+        <div>
+          <label>Id do Usuário</label>
+          <input type="text" name="id" value={usuario.id} onChange={handleChange} />
+        </div>
+        <div>
+          <label>Novo Login</label>
+          <input type="text" name="login" value={usuario.login} onChange={handleChange} />
+        </div>
+        <div>
+          <label>Novo Email</label>
+          <input type="text" name="email" value={usuario.email} onChange={handleChange} />
+        </div>
+        <button type="submit">Salvar</button>
+      </form>
+    </div>
   )
 }
 

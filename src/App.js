@@ -13,7 +13,6 @@ import RemoveFuncionario from './pages/removeFuncionario';
 import RemoveUsuario from './pages/removeUsuario';
 import EditarSenha from './pages/modificarSenha';
 import Dashboard from './pages/dashboard';
-import TestePage from './pages/ListarDados';
 import PerfilPage from './pages/perfil';
 
 function App() {
@@ -33,7 +32,6 @@ function App() {
         <Route path='/deletar-funcionario' element={<RemoveFuncionario/>}/>
         <Route path='/deletar-usuario' element={<RemoveUsuario/>}/>
         <Route path='/modificar-senha' element={<EditarSenha/>}/>
-        <Route path='/listar' element={<TestePage/>}/>
         <Route path='/perfil' element={<PerfilPage/>}/>
       </Routes>
     </>

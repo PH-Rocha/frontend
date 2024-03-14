@@ -60,24 +60,30 @@ function PerfilPage() {
   }, [navigate]);
 
   return (
-    <div>
+    <div className="page-perfil">
       <h1>Perfil</h1>
-      <h3>Dados do usuário</h3>
-      <ul>
-        <li key={usuario.id}>Login: {usuario.login}</li>
-        <li key={usuario}>Email:{usuario.email}</li>
-      </ul>
-      <h3>Dados do Cliente</h3>
-      <ul>
-        <li key={cliente}>Nome:{cliente.nome}</li>
-        <li key={cliente}>Idade:{cliente.idade}</li>
-      </ul>
-      <h3>Dados do funcionario</h3>
-      <ul>
-        <li key={funcionario}>Nome:{funcionario.nome}</li>
-        <li key={funcionario}>Idade:{funcionario.idade}</li>
-        <li key={funcionario}>cargo:{funcionario.cargo}</li>
-      </ul>
+      <div>
+        <h3>Dados do usuário</h3>
+        <ul>
+          <li key={usuario.id}>Login: {usuario.login}</li>
+          <li key={usuario}>Email:{usuario.email}</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Dados do Cliente</h3>
+        <ul>
+          <li key={cliente}>Nome:{cliente.nome}</li>
+          <li key={cliente}>Idade:{cliente.idade}</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Dados do funcionario</h3>
+        <ul>
+          <li key={funcionario}>Nome:{funcionario.nome}</li>
+          <li key={funcionario}>Idade:{funcionario.idade}</li>
+          <li key={funcionario}>cargo:{funcionario.cargo}</li>
+        </ul>
+      </div>
     </div>
   )
 }

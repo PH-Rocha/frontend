@@ -5,18 +5,18 @@ import { useNavigate } from 'react-router-dom';
 function AddUsuario() {
   const navigate = useNavigate();
   const [usuario, setUsuario] = useState({
-    login:'',
-    email:'',
-    senha:''
+    login: '',
+    email: '',
+    senha: ''
   });
 
   const handleChange = (event) => {
-    const  { name,value } = event.target;
+    const { name, value } = event.target;
 
     setUsuario((usuarioAnterior) => {
       return {
         ...usuarioAnterior,
-        [name]:value
+        [name]: value
       }
     });
   }
@@ -30,19 +30,25 @@ function AddUsuario() {
     navigate('/login');
   }
 
-  return(
-    <>
+  return (
+    <div className='page-add-usuario'>
       <h1>Adicionar usuário</h1>
       <form onSubmit={salvaUsuario}>
-        <label>login</label>
-        <input type='text' name='login' value={usuario.login} onChange={handleChange}/>
-        <label>email</label>
-        <input type='text' name='email' value={usuario.email} onChange={handleChange}/>
-        <label>senha</label>
-        <input type='text' name='senha' value={usuario.senha} onChange={handleChange}/>
+        <div>
+          <label>login</label>
+          <input type='text' name='login' value={usuario.login} onChange={handleChange} />
+        </div>
+        <div>
+          <label>email</label>
+          <input type='text' name='email' value={usuario.email} onChange={handleChange} />
+        </div>
+        <div>
+          <label>palavra-chave</label>
+          <input type='password' name='senha' value={usuario.senha} onChange={handleChange} />
+        </div>
         <button type='submit'>Salvar</button>
       </form>
-    </>
+    </div>
   )
 
 }

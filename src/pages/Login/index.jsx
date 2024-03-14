@@ -4,18 +4,18 @@ import { logarUsuario } from '../../services/request_api';
 
 function LogarUsuario() {
   const navigate = useNavigate();
-  const [ usuario, setUsuario ] = useState({
+  const [usuario, setUsuario] = useState({
     login: '',
     senha: ''
   });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    
+
     setUsuario((usuarioAnterior) => {
       return {
         ...usuarioAnterior,
-        [name]:value
+        [name]: value
       }
     });
   }
@@ -40,7 +40,7 @@ function LogarUsuario() {
         setUsuario({ login: '', senha: '' });
 
         navigate('/Dashboard');
-        
+
       } else {
         console.error('Erro ao fazer login: Token não recebido.');
       }
@@ -50,17 +50,21 @@ function LogarUsuario() {
   }
 
   return (
-    <>
+    <div className="page-login">
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
-        <label htmlFor='login' >Login</label>
-        <input type='text' id='login' name='login' value={usuario.login} onChange={handleChange}/>
-        <label htmlFor='senha' >Palavra-passe</label>
-        <input type='password' id='senha' name='senha' value={usuario.senha} onChange={handleChange}/>
+        <div>
+          <label htmlFor='login' >Login</label>
+          <input type='text' id='login' name='login' value={usuario.login} onChange={handleChange} />
+        </div>
+        <div>
+          <label htmlFor='senha' >Palavra-passe</label>
+          <input type='password' id='senha' name='senha' value={usuario.senha} onChange={handleChange} />
+        </div>
         <button type='submit'>Entrar</button>
       </form>
       <p>Não tem conta?<Link to="/adicionar">Cadastre-se aqui</Link></p>
-    </>
+    </div>
   );
 }
 

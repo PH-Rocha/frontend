@@ -43,7 +43,7 @@ function EditarSenha() {
   }
 
   return (
-    <div>
+    <div className="page-edita-senha">
       <h2>Modificar Senha</h2>
       <form onSubmit={handleSubmit}>
         <div>

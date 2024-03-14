@@ -8,7 +8,6 @@ import EditarUsuario from "../editarUsuario";
 import RemoveCliente from "../removeCliente";
 import RemoveFuncionario from "../removeFuncionario";
 import RemoveUsuario from "../removeUsuario";
-import TestePage from "../ListarDados";
 import PerfilPage from "../perfil";
 
 const Dashboard = () => {
@@ -36,8 +35,6 @@ const Dashboard = () => {
         return <RemoveFuncionario/>
       case 'RemoveUsuario':
         return <RemoveUsuario/>
-      case 'TestePage': 
-        return <TestePage/>
       default: 
       return null;
     }
@@ -45,7 +42,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <nav>
+      <nav className="nav-bar">
         <ul>
           <li><a href="#" onClick={() => setCurrentPage('PerfilPage')}>Perfil</a></li>
           <li><a href="#" onClick={() => setCurrentPage('EditarCliente')}>Editar Cliente</a></li>
@@ -57,7 +54,6 @@ const Dashboard = () => {
           <li><a href="#" onClick={() => setCurrentPage('RemoveCliente')}>Deletar Cliente</a></li>
           <li><a href="#" onClick={() => setCurrentPage('RemoveFuncionario')}>Deletar Funcionário</a></li>
           <li><a href="#" onClick={() => setCurrentPage('RemoveUsuario')}>Deletar Usuário</a></li>
-          <li><a href="#" onClick={() => setCurrentPage('TestePage')}>Listar Dados</a></li>
         </ul>
       </nav>
       <div className="main-content">

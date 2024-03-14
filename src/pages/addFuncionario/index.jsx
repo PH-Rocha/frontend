@@ -14,7 +14,7 @@ function AddFuncionario() {
 
   const [usuarios, setUsuarios] = useState([]);
 
-  useEffect (() => {
+  useEffect(() => {
     async function fetchUsuarios() {
       try {
         const token = localStorage.getItem('token');
@@ -26,7 +26,7 @@ function AddFuncionario() {
           return;
         }
 
-        const response = await getUsuarios({headers: {Authorization: `${token}`}});
+        const response = await getUsuarios({ headers: { Authorization: `${token}` } });
         console.log('Usuários recuperados:', response.data);
         setUsuarios(response.data);
       } catch (error) {
@@ -62,7 +62,7 @@ function AddFuncionario() {
       return;
     }
 
-    try{
+    try {
       await addFuncionario(funcionario, token);
       console.log('Funcionário adicionado com sucesso! Redirecionando para /dashboard');
       navigate('/dashboard');
@@ -72,27 +72,35 @@ function AddFuncionario() {
   }
 
   return (
-    <>
-    <h1>Adicionar funcionario</h1>
-      <form onSubmit={salvaFuncionario}>  
-        <label htmlFor="nome">nome</label>
-        <input type="text"  id="nome" name="nome" value={funcionario.nome} onChange={handleChange}/>
-        <label htmlFor="idade">idade</label>
-        <input type="text" id="idade" name="idade" value={funcionario.idade} onChange={handleChange}/>
-        <label htmlFor="cargo">Cargo:</label>
-        <input id="cargo" type="text" name="cargo" value={funcionario.cargo} onChange={handleChange}/>
-        <label htmlFor="usuario">Usuários:</label>
-        <select name="id_usuario" id="usuario" value={funcionario.id_usuario} onChange={handleChange}>
-          <option value="">Selecione um usuário</option>
-          {usuarios.map(usuario => (
-            <option key={usuario.id} value={usuario.id}>
-              {usuario.login}
-            </option>
-          ))}
-        </select>
+    <div className="page-add-funcionario">
+      <h1>Adicionar funcionario</h1>
+      <form onSubmit={salvaFuncionario}>
+        <div>
+          <label htmlFor="nome">nome</label>
+          <input type="text" id="nome" name="nome" value={funcionario.nome} onChange={handleChange} />
+        </div>
+        <div>
+          <label htmlFor="idade">idade</label>
+          <input type="text" id="idade" name="idade" value={funcionario.idade} onChange={handleChange} />
+        </div>
+        <div>
+          <label htmlFor="cargo">Cargo:</label>
+          <input id="cargo" type="text" name="cargo" value={funcionario.cargo} onChange={handleChange} />
+        </div>
+        <div>
+          <label htmlFor="usuario">Usuários:</label>
+          <select name="id_usuario" id="usuario" value={funcionario.id_usuario} onChange={handleChange}>
+            <option value="">Selecione um usuário</option>
+            {usuarios.map(usuario => (
+              <option key={usuario.id} value={usuario.id}>
+                {usuario.login}
+              </option>
+            ))}
+          </select>
+        </div>
         <button type='submit'>Salvar</button>
       </form>
-    </>
+    </div>
   )
 }
 

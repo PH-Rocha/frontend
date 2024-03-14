@@ -29,16 +29,20 @@ function RemoveUsuario() {
   }
 
   return (
-    <>
+    <div className="page-remove-usuario">
       <h1>Remover Usuário</h1>
       <form onSubmit={handleRemover}>
-        <label>Informe o ID do Usuário:</label>
-        <input type="text" value={id} onChange={handleChangeId}/>
-        <label>Código de Exclusão:</label>
-        <input type="text" value={codigoExclusao} onChange={handleChangeCodigoExclusao}/>
+        <div>
+          <label>Informe o ID do Usuário:</label>
+          <input type="text" value={id} onChange={handleChangeId} />
+        </div>
+        <div>
+          <label>Código de Exclusão:</label>
+          <input type="text" value={codigoExclusao} onChange={handleChangeCodigoExclusao} />
+        </div>
         <button type="submit">Remover Cliente</button>
       </form>
-    </>
+    </div>
   );
 }
 
