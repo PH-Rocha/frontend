@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { addUsuario } from '../../services/request_api';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function AddUsuario() {
   const navigate = useNavigate();
@@ -48,6 +48,7 @@ function AddUsuario() {
         </div>
         <button type='submit'>Salvar</button>
       </form>
+      <p>Já tem uma conta?<Link to="/login">login</Link></p>
     </div>
   )
 

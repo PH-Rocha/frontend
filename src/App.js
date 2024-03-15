@@ -1,6 +1,5 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import HomeTeste from './pages/Home';
 import AddUsuario from './pages/AddUsuario';
 import LogarUsuario from './pages/Login';
 import AddCliente  from './pages/AddCliente';
@@ -19,7 +18,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={<HomeTeste/>}/>
+      <Route path='/' element={<LogarUsuario/>}/>
         <Route path='/login' element={<LogarUsuario/>}/>
         <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path='/adicionar' element={<AddUsuario/>}/>

@@ -51,15 +51,13 @@ function LogarUsuario() {
 
   return (
     <div className="page-login">
-      <h1>Login</h1>
+      <p className="login-title">Login</p>
       <form onSubmit={handleLogin}>
         <div>
-          <label htmlFor='login' >Login</label>
-          <input type='text' id='login' name='login' value={usuario.login} onChange={handleChange} />
+          <input type="text" id='login' name='login' value={usuario.login} onChange={handleChange} placeholder="login" required/>
         </div>
         <div>
-          <label htmlFor='senha' >Palavra-passe</label>
-          <input type='password' id='senha' name='senha' value={usuario.senha} onChange={handleChange} />
+          <input type="password" id='senha' name='senha' autoComplete="true" value={usuario.senha} onChange={handleChange} placeholder="senha" required/>
         </div>
         <button type='submit'>Entrar</button>
       </form>
