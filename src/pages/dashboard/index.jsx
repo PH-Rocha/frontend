@@ -11,6 +11,13 @@ import RemoveUsuario from "../removeUsuario";
 import PerfilPage from "../perfil";
 
 const Dashboard = () => {
+  const [showButton, setShowButton] = useState(true);
+
+  const toggleButton = () => {
+    setShowButton(!showButton);
+  }
+  var buttonText = showButton ? "|||" : "|||";
+
   const [currentPage, setCurrentPage] = useState('PerfilPage');
 
   const renderPage = () => {
@@ -42,8 +49,8 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <nav className="nav-bar">
-        <ul>
+        {showButton && <nav className="nav-bar">
+          <ul> 
           <li><a href="#" onClick={() => setCurrentPage('PerfilPage')}>Perfil</a></li>
           <li><a href="#" onClick={() => setCurrentPage('EditarCliente')}>Editar Cliente</a></li>
             <li><a href="#" onClick={() => setCurrentPage('EditarFuncionario')}>Editar Funcionário</a></li>
@@ -55,7 +62,8 @@ const Dashboard = () => {
           <li><a href="#" onClick={() => setCurrentPage('RemoveFuncionario')}>Deletar Funcionário</a></li>
           <li><a href="#" onClick={() => setCurrentPage('RemoveUsuario')}>Deletar Usuário</a></li>
         </ul>
-      </nav>
+      </nav>}
+        <button className="nav-button" onClick={toggleButton}>{buttonText}</button>
       <div className="main-content">
         {renderPage()}
       </div>

@@ -90,8 +90,8 @@ function EditarCliente() {
   }
 
   return (
-    <div className="page-edita-cliente">
-      <h1>Editar Cliente</h1>
+    <>
+      <h1 className="title">Editar Cliente</h1>
       <form onSubmit={handleEdit}>
         <div>
           <label>Id:</label>
@@ -107,7 +107,7 @@ function EditarCliente() {
         </div>
         <div>
           <label htmlFor="usuario">Usuários:</label>
-          <select name="id_usuario" id="usuario" value={cliente.id_usuario} onChange={handleChange}>
+          <select className="select" name="id_usuario" id="usuario" value={cliente.id_usuario} onChange={handleChange}>
             <option value="">Selecione um usuário</option>
             {usuarios.map(usuario => (
               <option key={usuario.id} value={usuario.id}>
@@ -118,7 +118,7 @@ function EditarCliente() {
         </div>
         <button type="submit">Salvar</button>
       </form>
-    </div>
+    </>
   )
 }
 

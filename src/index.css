@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #aec3b0;
+  background-color: rgb(200, 220, 255);
   color: #0f0505;
 }
 
@@ -14,10 +14,26 @@ code {
     monospace;
 }
 
-ul, li{
+ul{
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+li a{
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+li a.active{
+  color: white;
+}
+
+li a:hover:not(.active){
+  background-color: #555;
+  color: white;
 }
 
 p{
@@ -73,33 +89,66 @@ a:hover{
 }
 
 .nav-bar{
-  font-size: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
   width: 200px;
-  margin: 0;
-  padding: 0;
-  border-right: 1px solid  #0f0f0f;
+  background: linear-gradient(to right, rgb(200, 220, 255), rgb(0, 153, 255));
+  border-radius: 5px;
+  height: 100%;
+  overflow: auto;
 }
 
-.nav-bar, li {
-  border-bottom: 1px solid #0f0f0f;
+.nav-button,
+.nav-button:focus{
+  height: 45px;
+  width: 50px;
+  font-size: 17px;
+  padding: 10px 10px 10px 10px;
+  border-radius: 0.7rem;
+  background-image: linear-gradient(to right, rgb(200, 220, 255), rgb(0, 153, 255));
+  border: 2px solid rgb(50, 50, 50);
+  border-bottom: 5px solid rgb(50, 50, 50);
+  box-shadow: 0px 1px 6px 0px rgb(0, 153, 255);
+  transform: translate(0, -3px);
+  cursor: pointer;
+  transition: 0.2s;
+  transition-timing-function: linear;
+}
+.nav-button:active{ 
+  transform: translate(0, 0);
+  border-bottom: 2px solid rgb(50, 50, 50);
 }
 
 .main-content{
-  text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  width: 1000px;
-  margin: 50px 50px 50px 50px;
-  padding: 5px;
-  border: 1px solid #0f0f0f;
-  border-radius: 5px;
-  background-color: #e6e1db;
+  align-items: center;
+  justify-content: center;
+  align-content: space-around;
+  height: 500px;
+  width: 100%;
 }
 
+.usuario{
+  margin-bottom: 20px;
+  width: 200px;
+}
+
+.cliente{
+  margin-bottom: 20px;
+  width: 200px;
+}
+
+.funcionario{
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.select{
+  background: #eeeeee;
+  width: 200px;
+  height: 30px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
 
 .page-login{
   display: flex;
@@ -113,8 +162,21 @@ a:hover{
   font-size: large;
 }
 
-.login-title{
+.title{
   margin: 5px;
   padding: 0;
   font-size: xx-large;
 }
+
+.page-add-usuario{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: space-around;
+  align-items: center;
+  width: auto;
+  height: 500px;
+  font-size: large;
+}
+

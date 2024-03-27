@@ -32,7 +32,7 @@ function AddUsuario() {
 
   return (
     <div className='page-add-usuario'>
-      <h1>Adicionar usuário</h1>
+      <h1 className='title'>Adicionar usuário</h1>
       <form onSubmit={salvaUsuario}>
         <div>
           <label>login</label>

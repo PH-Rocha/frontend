@@ -114,7 +114,7 @@ function EditarFuncionario() {
         </div>
         <div>
           <label htmlFor="usuario">Usuários:</label>
-          <select name="id_usuario" id="usuario" value={funcionario.id_usuario} onChange={handleChange}>
+          <select className="select" name="id_usuario" id="usuario" value={funcionario.id_usuario} onChange={handleChange}>
             <option value="">Selecione um usuário</option>
             {usuarios.map(usuario => (
               <option key={usuario.id} value={usuario.id}>

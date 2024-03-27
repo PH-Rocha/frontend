@@ -6,16 +6,20 @@ import { getUsuario } from "../../services/request_api";
 function PerfilPage() {
   const navigate = useNavigate();
   const [usuario, setUsuario] = useState({
+    id: '',
     login: '',
     email: '',
+    codigoExclusao: ''
   });
 
   const [cliente, setCliente] = useState({
+    id: '',
     nome: '',
-    idade: '',
+    idade: ''
   });
 
   const [funcionario, setFuncionario] = useState({
+    id: '',
     nome: '',
     idade: '',
     cargo: ''
@@ -37,16 +41,20 @@ function PerfilPage() {
         const UsuarioResponse = await getUsuario(id, token);
         console.log(UsuarioResponse.data);
         setUsuario({
+          id: UsuarioResponse.data.id,
           login: UsuarioResponse.data.login,
-          email: UsuarioResponse.data.email
+          email: UsuarioResponse.data.email,
+          codigoExclusao: UsuarioResponse.data.codigoExclusao
         });
 
         setCliente({
+          id: UsuarioResponse.data.cliente.id,
           nome: UsuarioResponse.data.cliente.nome,
           idade: UsuarioResponse.data.cliente.idade
         });
 
         setFuncionario({
+          id: UsuarioResponse.data.funcionario.id,
           nome: UsuarioResponse.data.funcionario.nome,
           idade: UsuarioResponse.data.funcionario.idade,
           cargo: UsuarioResponse.data.funcionario.cargo
@@ -60,31 +68,28 @@ function PerfilPage() {
   }, [navigate]);
 
   return (
-    <div className="page-perfil">
-      <h1>Perfil</h1>
-      <div>
-        <h3>Dados do usuário</h3>
-        <ul>
-          <li key={usuario.id}>Login: {usuario.login}</li>
-          <li key={usuario}>Email:{usuario.email}</li>
-        </ul>
-      </div>
-      <div>
-        <h3>Dados do Cliente</h3>
-        <ul>
-          <li key={cliente}>Nome:{cliente.nome}</li>
-          <li key={cliente}>Idade:{cliente.idade}</li>
-        </ul>
-      </div>
-      <div>
-        <h3>Dados do funcionario</h3>
-        <ul>
-          <li key={funcionario}>Nome:{funcionario.nome}</li>
-          <li key={funcionario}>Idade:{funcionario.idade}</li>
-          <li key={funcionario}>cargo:{funcionario.cargo}</li>
-        </ul>
-      </div>
-    </div>
+    <>
+      <h1 className="title">Perfil</h1>
+        <div key={usuario} className="usuario">
+          <h3>Dados do Usuário</h3>
+          <p>Id: {usuario.id}</p>
+          <p>Login: {usuario.login}</p>
+          <p>Email: {usuario.email}</p>
+          <p>Código de exclusão: {usuario.codigoExclusao}</p>
+        </div>
+        <div key={cliente} className="cliente">
+          <h3>Dados do Cliente</h3>
+          <p>Id: {cliente.id}</p>
+          <p>Nome: {cliente.nome}</p>
+          <p>Idade: {cliente.idade}</p>
+        </div>
+        <div key={funcionario} className="funcionario">
+          <h3>Dados do funcionário</h3>
+          <p>Id: {funcionario.id}</p>
+          <p>Nome: {funcionario.nome}</p>
+          <p>cargo: {funcionario.cargo}</p>
+        </div>
+    </>
   )
 }
 

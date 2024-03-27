@@ -78,7 +78,7 @@ function AddCliente() {
         </div>
         <div>
           <label htmlFor="id_usuario" >Usuários:</label>
-          <select name="id_usuario" id="id_usuario" value={cliente.id_usuario} onChange={handleChange}>
+          <select className="select" name="id_usuario" id="id_usuario" value={cliente.id_usuario} onChange={handleChange}>
             <option value="">Selecione um usuário</option>
             {usuarios.map(usuario => (
               <option key={usuario.id} value={usuario.id}>

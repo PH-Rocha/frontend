@@ -51,7 +51,7 @@ function LogarUsuario() {
 
   return (
     <div className="page-login">
-      <p className="login-title">Login</p>
+      <h1 className="title">Login</h1>
       <form onSubmit={handleLogin}>
         <div>
           <input type="text" id='login' name='login' value={usuario.login} onChange={handleChange} placeholder="login" required/>
